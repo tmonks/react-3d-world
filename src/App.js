@@ -1,25 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import { Canvas } from "@react-three/fiber";
+import './styles.css';
 
-function App() {
+function Box() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <mesh>
+      <boxBufferGeometry attach="geometry" />
+      <meshLambertMaterial attach="material" color="hotpink" />
+    </mesh>
+  )
+}
+function App() {
+  return <Canvas><Box /></Canvas>
 }
 
 export default App;
