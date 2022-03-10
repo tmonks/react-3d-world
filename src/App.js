@@ -4,9 +4,15 @@ import { useBox, usePlane, Physics } from "@react-three/cannon";
 import "./styles.css";
 
 function Box() {
-  const [ref] = useBox(() => ({ mass: 1 }));
+  const [ref, api] = useBox(() => ({ mass: 1 }));
   return (
-    <mesh ref={ref} position={[0, 2, 0]}>
+    <mesh
+      onClick={() => {
+        api.velocity.set(1, 5, 0);
+      }}
+      ref={ref}
+      position={[0, 2, 0]}
+    >
       <boxBufferGeometry attach="geometry" />
       <meshLambertMaterial attach="material" color="hotpink" />
     </mesh>
@@ -14,16 +20,10 @@ function Box() {
 }
 
 function Plane() {
-  const [ref, api] = usePlane(() => ({ rotation: [-Math.PI / 2, 0, 0] }));
+  const [ref] = usePlane(() => ({ rotation: [-Math.PI / 2, 0, 0] }));
   return (
-    <mesh
-      onClick={() => {
-        api.velocity.set(0, 2, 0);
-      }}
-      position={[0, 0, 0]}
-      rotation={[-Math.PI / 2, 0, 0]}
-    >
-      <planeBufferGeometry attach="geometry" args={[100, 100]} />
+    <mesh position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+      <planeBufferGeometry attach="geometry" args={[10, 10]} />
       <meshLambertMaterial attach="material" color="lightblue" />
     </mesh>
   );
